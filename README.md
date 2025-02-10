@@ -7,7 +7,7 @@ This project is a simple to-do list application built with React. It allows user
 - **React**: A JavaScript library for building user interfaces. This project uses functional components and React hooks.
 - **useState**: A Hook that lets you add React state to function components.
 - **Event Handling**: React's synthetic events for handling user input and form submissions.
-- 
+
 ## Key Concepts
 
 - **Functional Components**: The app is built using functional components, which are simpler and recommended for most components unless you need more complex features like lifecycle methods.
