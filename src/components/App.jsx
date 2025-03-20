@@ -1,36 +1,40 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import ToDoItem from "./ToDoItem";
+import InputArea from "./InputArea";
 
 function App() {
-  const [text, setText] = useState("");
   const [items, setItems] = useState([]);
-  function handleChange(event) {
-    const newValue = event.target.value; //we only got one value as there is only one input
-    setText(newValue);
+
+  function addItem(inputText) {
+    setItems(prevItems => {
+      return [...prevItems, inputText];
+    });
   }
 
-  function handleClick() {
-    setItems((prevItems) => {
-      return [...prevItems, text];
+  function deleteItem(id) {
+    setItems(prevItems => {
+      return prevItems.filter((item, index) => {
+        return index !== id;
+      });
     });
-    setText("");
   }
+
   return (
     <div className="container">
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
-      <div className="form">
-        <input onChange={handleChange} type="text" value={text} />
-        <button onClick={handleClick}>
-          <span>Add</span>
-        </button>
-      </div>
+      <InputArea onAdd={addItem} />
       <div>
         <ul>
-          {items.map((toDo) => {
-            return <li>{toDo}</li>;
-          })}
+          {items.map((todoItem, index) => (
+            <ToDoItem
+              key={index}
+              id={index}
+              text={todoItem}
+              onChecked={deleteItem}
+            />
+          ))}
         </ul>
       </div>
     </div>
